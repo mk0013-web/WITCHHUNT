@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>密室逃脫：女巫審判</title>
+<style>
+:root{--bg:#f1ece1;--fg:#2a2420;--card:#fffaf0;--line:#8b7a5e;--acc:#a8402f;--sc:#8a6d3b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15110d;--fg:#eee4cf;--card:#231c15;--line:#6b5c44;--acc:#e0705f}}
+:root[data-theme="dark"]{--bg:#15110d;--fg:#eee4cf;--card:#231c15;--line:#6b5c44;--acc:#e0705f}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;display:flex;justify-content:center}
+.app{width:100%;max-width:680px;padding:14px}
+h1{font-size:1.2rem;margin:2px 0}
+.sub{font-size:.75rem;opacity:.7;margin-bottom:8px}
+.bar{border-left:6px solid var(--sc);padding:6px 10px;background:var(--card);border-radius:6px;display:flex;justify-content:space-between;gap:8px;font-size:.9rem}
+.grid{position:relative;height:340px;margin:10px 0;border:3px solid var(--line);border-radius:12px;overflow:hidden;background:repeating-linear-gradient(0deg,transparent 0 38px,rgba(0,0,0,.14) 38px 40px),repeating-linear-gradient(90deg,transparent 0 78px,rgba(0,0,0,.08) 78px 80px),var(--wall,#555);box-shadow:inset 0 0 60px rgba(0,0,0,.45)}
+.grid::before{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:repeating-linear-gradient(90deg,transparent 0 58px,rgba(0,0,0,.22) 58px 60px),var(--floor,#333);border-top:4px solid rgba(0,0,0,.4)}
+.grid::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 35%,transparent 40%,rgba(0,0,0,.55));pointer-events:none}
+.dc{position:absolute;z-index:1;font-size:1.7rem;opacity:.85;pointer-events:none}
+.o{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px;border:2px solid transparent;border-radius:10px;background:rgba(0,0,0,.18);color:#fff;cursor:pointer;font:inherit;font-size:.72rem;line-height:1.2;white-space:nowrap;text-shadow:0 1px 3px #000}
+.o b{font-size:2.1rem;font-weight:400;filter:drop-shadow(0 3px 3px rgba(0,0,0,.6))}
+.o:hover,.o:focus-visible{border-color:#ffd37a;background:rgba(255,211,122,.22);outline:none}
+.o.ok{opacity:.6}.o{background:transparent}.o svg{width:100%;flex:1;min-height:0}#lk .box{max-width:440px;max-height:90vh;overflow:auto}.cg{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;font-size:.68rem;text-align:center}.cd{border:1px solid var(--line);border-radius:4px;padding:2px;background:var(--bg)}.cd b{display:block}.cd small{opacity:.7;display:block}#zd svg{width:100%;height:auto;margin-top:6px}#zd{perspective:800px}.pg{background:#eadcb8;color:#3a2a14;border:1px solid #8b7a5e;border-radius:3px;padding:12px;min-height:170px;text-align:left;font-size:.88rem;line-height:1.7;position:relative;overflow:hidden;box-shadow:inset 0 0 18px rgba(90,60,20,.35);transform-origin:left center;animation:fl .35s ease}@keyframes fl{from{transform:rotateY(-65deg);opacity:.3}}.pg.bn::after{content:'';position:absolute;right:-12px;bottom:-12px;width:55%;height:50%;background:radial-gradient(ellipse at 100% 100%,#0a0603 28%,#3a1c08 45%,rgba(120,50,10,.55) 60%,transparent 75%)}.pg.bg{clip-path:polygon(0 0,100% 0,100% 56%,92% 63%,84% 58%,72% 72%,60% 65%,48% 80%,34% 73%,20% 88%,8% 81%,0 90%);min-height:210px}.pg.bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(60,25,5,.75) 78%,#120905)}.cv{background:linear-gradient(#2b1030,#14081a);color:#e8d9a0;border:3px double #c9a24a;border-radius:8px;padding:14px;text-align:center;font-family:serif}.lc{display:inline-block;background:#b8c9a0;border:2px solid #5a6a48;border-radius:4px;padding:4px 6px;margin:3px}.lf{border:2px solid #5a4630;padding:4px;margin:8px 4px;display:inline-block;white-space:nowrap}.lf .lc{padding:3px 4px;margin:2px}.tb{width:100%;border-collapse:collapse;font-size:.7rem;text-align:center}.tb td,.tb th{border:1px solid #8b7a5e;padding:2px}.cf{padding:6px;margin:4px 0;border:1px solid #3a1c08;border-radius:4px;background:linear-gradient(90deg,#120905,#3a1c08,#120905);color:#9a8a7a;text-decoration:line-through;font-size:.82rem}.rx ol{margin:2px 0 6px;padding-left:20px}.pg.bd2{clip-path:polygon(0 4%,6% 0,20% 3%,38% 0,55% 3%,75% 0,92% 3%,100% 8%,97% 30%,100% 52%,96% 75%,100% 100%,80% 96%,60% 100%,40% 95%,20% 100%,5% 96%,0 80%,3% 55%,0 30%);box-shadow:inset 0 0 28px #2a1204,inset 0 0 8px #000}.pg.bd2::after{content:'';position:absolute;right:-8px;bottom:-8px;width:26%;height:30%;background:radial-gradient(ellipse at 100% 100%,#0a0603 30%,rgba(120,50,10,.5) 60%,transparent 75%)}.kp{display:grid;grid-template-columns:repeat(3,64px);gap:8px;justify-content:center;margin:10px 0;padding:12px;background:#2b2b2e;border-radius:10px;border:3px solid #6a6f74}.kb{font:inherit;font-size:1.4rem;font-weight:700;padding:12px 0;border-radius:8px;border:2px solid #9aa0a5;background:linear-gradient(#d8dce0,#a8adb2);color:#222;cursor:pointer}.kb:active{transform:translateY(2px);background:#9aa0a5}.ph{background:radial-gradient(#1d1d26,#07070a);color:#d6e8c8;border:6px solid #e8e0cc;border-bottom-width:24px;padding:20px 12px;text-align:center;line-height:2.1;font-size:.95rem;box-shadow:0 4px 10px rgba(0,0,0,.5);transform:rotate(-1deg)}.ph.w{background:linear-gradient(#5a5a60,#3a3a40);color:#eee;text-shadow:0 0 3px #000}.pu{color:#c07bff;text-shadow:0 0 8px #a040ff;font-weight:700}.gap{display:inline-block;min-width:6em}.rg{color:transparent;-webkit-background-clip:text;background-clip:text;font-weight:700}#nx .box{max-height:88vh;overflow:auto;text-align:left}.ws{display:inline-block;width:26px;height:26px;line-height:26px;border-radius:50%;background:#9c1f1f;color:#f1c0c0;box-shadow:inset 0 0 4px #000}.rx{background:#f4ecd6;color:#2b2418;border:1px solid #8b7a5e;padding:12px;text-align:left;font-size:.88rem;line-height:1.7;box-shadow:inset 0 0 14px rgba(120,90,40,.25)}#zv svg{width:100%;height:170px}.pl{position:absolute;z-index:3;transform:translate(-50%,-100%);pointer-events:none}.pl svg{display:block;transition:transform .1s}.lg{transform-box:fill-box;transform-origin:50% 0}.pl.walk .lg.a{animation:lg .32s infinite alternate ease-in-out}.pl.walk .lg.b{animation:lg .32s infinite alternate-reverse ease-in-out}.pl.walk .bd{animation:bob .16s infinite alternate}@keyframes lg{from{transform:rotate(-28deg)}to{transform:rotate(28deg)}}@keyframes bob{to{transform:translateY(-1.5px)}}.o.near{border-color:#ffd37a;background:rgba(255,211,122,.25);box-shadow:0 0 14px #ffd37a}
+.msg{min-height:4.2em;padding:10px 12px;background:var(--card);border:1px solid var(--line);border-radius:8px;line-height:1.6;white-space:pre-wrap;font-size:.93rem}
+.inv{margin:10px 0;font-size:.82rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.it{padding:3px 9px;border:1px dashed var(--line);border-radius:12px;background:var(--card)}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:8px 0;font-size:.85rem}
+details p{margin:6px 0;white-space:pre-wrap;line-height:1.5}
+button.b{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:9}
+.modal.on{display:flex}
+.box{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:18px;text-align:center;max-width:340px;width:100%;line-height:1.6}
+.box input{font:inherit;font-size:1.4rem;letter-spacing:.3em;text-align:center;width:100%;padding:8px;margin:10px 0;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>🕯️ 密室逃脫：女巫審判</h1>
+  <div class="sub">劇情涉及嬰兒死亡與宗教審判，請斟酌適合的年齡。</div>
+  <div class="bar"><span id="sn"></span><span>⏱ <b id="tm">60:00</b>　步數 <b id="st">0</b></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="row" style="margin-bottom:8px"><button class="b p" id="ia" disabled>🚶 走近家具後可調查</button><span style="font-size:.75rem;opacity:.7;align-self:center">方向鍵／WASD 移動，E 或空白鍵調查；也可點地板或家具走過去</span></div><div class="msg" id="msg"></div>
+  <div class="inv">🎒 <span id="inv"></span></div>
+  <details><summary>📓 線索筆記（<span id="nc">0</span>）</summary><div id="notes"></div></details>
+  <div class="row"><button class="b" id="hint">💡 提示</button><button class="b" id="rs">重新開始</button></div>
+</div>
+
+<div class="modal" id="lk"><div class="box">
+  <div id="lt" style="font-weight:700"></div><div id="zv"></div><div id="zd" style="white-space:pre-wrap;text-align:left;font-size:.9rem;margin:8px 0"></div><div id="ze" style="color:var(--acc)"></div><div id="zi">
+  <input id="in" maxlength="8" autocomplete="off" aria-label="輸入密碼">
+  <div class="row" style="justify-content:center"><button class="b p" id="go">開鎖</button></div></div><div class="row" style="justify-content:center;margin-top:8px"><button class="b" id="cl">關閉</button></div>
+</div></div>
+
+<div class="modal" id="nx"><div class="box">
+  <div id="nt" style="white-space:pre-wrap"></div><br>
+  <button class="b p" id="nb">繼續</button>
+</div></div>
+
+<script>
+(function(){
+function O(e,n,t,x){x=x||{};x.e=e;x.n=n;x.t=t;return x}
+var S=[
+{n:"第一場景：案發現場",c:"#8a6d3b",w:"#6f5a3f",f:"#3a2c1e",x:[["🕯️",25,2],["🌙",56,2],["🕸️",1,1]],p:[[3,56,20,32],[3,6,22,36],[27,8,15,24],[27,34,15,22],[25,66,12,22],[39,56,17,30],[57,70,13,20],[46,6,16,34],[66,26,12,20],[74,60,20,28],[57,40,8,26],[64,4,16,20],[84,6,14,52]],i:"你在一間凌亂的房間醒來，空氣裡瀰漫著草藥味。這裡似乎是一樁命案的現場……",o:[
+O("🗄️","書桌","凌亂的書桌。桌上有張邀請卡：\n「致我忠誠的僕人啊…吾主於月下葡萄樹的茄子之日，幻化山羊降臨，今夜特令巫魔相聚，此箱為據，毀世而滅人，末日將近，吾主將掌握世界。」\n桌下有個4位數密碼箱。",{v:"inv",c:"1017",h:"葡萄樹＝葡月，茄子＝茄日。看看牆上的月曆。",r:"箱內有一張器官圖與說明：「蓋倫的錯誤就由我從頭到腳徹底研究修正。」",g:"說明：從頭到腳"}),
+O("📚","書櫃","書櫃上擺滿書：育兒、家庭照顧、魔鬼崇拜、練藥術……\n維薩留斯《論人體的構造》附表：腦5、心7、胃1、肺8、生殖0、腳2。",{v:"shelf"}),
+O("📖","嬰兒日記","嬰兒日記（9月12日出生），10月18日那頁被撕掉了。\n10月17日：下午嬰兒哭鬧發燒，就醫。醫生囑咐：藥品須每隔2小時服下，直到體溫下降才可停止。孩子自下午6點起至隔日上午6點持續惡化，最後死去。\n另一頁：凌晨依稀聽到窗外有人悄悄話…「只剩下2個了，即將湊足666數，迎接3位墮天使與7原罪降臨」。這是什麼意思？？",{v:"dia"}),
+O("📦","書櫃旁小盒","書櫃旁有個6位數密碼小盒。",{v:"rx",c:"266637",h:"把日記裡悄悄話出現的數字，依序排起來。",r:"內有處方簽：高熱不退。醫師：艾森（附親筆簽名）。\n依序餵食：退熱藥、體力藥、羊角藥、維生素、罌粟花、蟾蜍粉。",g:"處方簽"}),
+O("🗑️","垃圾桶","在垃圾堆裡翻到一張泛黃的圖紙，是維薩留斯《人體的構造》的局部：腦。",{g:"器官圖：腦",og:"腦"}),
+O("⚗️","鍊藥甕","鍊藥甕裡浸著一張圖紙，是維薩留斯《人體的構造》的局部：心。",{g:"器官圖：心",og:"心"}),
+O("🧰","甕下的箱子","鍊藥甕下方壓著一個6位數密碼箱。",{v:"med",c:"571802",h:"找齊6張器官圖，依「從頭到腳」排序，再對照維薩留斯的數字表。",r:"箱內有十種藥包：\n1維生素：淡黃橢圓　2大麻葉：綠色長條\n3體力藥：藍白各半膠囊　4鐵礦石：褐色粉包\n5蟾蜍粉：淡綠粉包　6鉛石白粉：銀色粉包\n7退熱藥：橘色橢圓　8鴉片膏：黑色軟糖狀\n9羊角藥：白色橢圓　0罌粟花：黑色圓形"}),
+O("🧥","奇怪的斗篷","斗篷口袋裡藏著一張圖紙，是維薩留斯《人體的構造》的局部：胃。",{g:"器官圖：胃",og:"胃"}),
+O("🥛","玻璃杯","玻璃杯底黏著一張圖紙，是維薩留斯《人體的構造》的局部：肺。",{g:"器官圖：肺",og:"肺"}),
+O("🛏️","嬰兒床","空蕩蕩的嬰兒床，枕頭下壓著一張圖紙，是維薩留斯《人體的構造》的局部：生殖。",{g:"器官圖：生殖",og:"生殖"}),
+O("🧹","掃把","掃把柄上綁著一張圖紙，是維薩留斯《人體的構造》的局部：腳。",{g:"器官圖：腳",og:"腳"}),
+O("🗓️","月曆","牆上掛著一本法國共和曆的月曆，翻到「葡月」那一頁。每一格都標著共和曆的日子與對應的國曆日期。",{m:1}),
+O("🚪","房門","房門是6位數密碼鎖。",{d:1,c:"739105",h:"依處方簽的藥物順序，找出每種藥對應的編號。",r:"你在案發現場發現了一些蛛絲馬跡，這起案件背後果然有什麼問題，但是證據明顯不足以推翻現在的情況，其他的線索可能在異端裁判所了，我們得抓緊時間潛入找尋證據了。"})
+]},
+{n:"第二場景：裁判官辦公室",c:"#6b3f3f",w:"#5a3a3a",f:"#2c1a1a",x:[["🕯️",28,2],["🕯️",56,2]],p:[[22,60,14,22],[4,6,22,34],[60,6,20,40],[38,62,14,22],[73,64,13,26],[38,4,16,38],[4,58,15,26],[54,60,16,28],[86,6,12,58]],i:"昏暗的辦公室，卷宗堆滿桌面，牆上的十字架在燭光中閃爍。",o:[
+O("📁","案件卷宗","封面：婦女殺害嬰兒。裁判官：約翰（親筆簽名）。\n被告：蒂芙尼　提告人：艾利克（被告丈夫）\n罪名：女巫（殺害嬰兒）　抓捕時間：10月18日\n證人：艾森（醫生）\n定案：因被告承認，女巫罪成立，判火刑（10/24執行）。"),
+O("🕸️","關係圖","牆上關係圖：艾利克—丈夫—蒂芙尼。艾森（醫生）與約翰（裁判官）之間，有一條標著「戰友」的線。"),
+O("🗃️","書櫃卷宗","卷宗有：小村毒水、魔鬼之箱、巫魔聚會、孩童失蹤、詭譎天氣。\n〈魔鬼之箱〉證詞：\nA：73號那位單身婦人很寶貝一個箱子，誰動就生氣。\nB：她說那是丈夫結婚6年時送的禮物，但我們沒見過她丈夫。\nC：聽說是老相好送的，裡面放著重要的9個物件。\nD：她常躲在後方羊圈4號房和山羊親暱。\nE：山羊是惡魔化身，箱裡一定是毒藥。\nF：我看到她凌晨1點帶著山羊和箱子往森林。"),
+O("📜","獵巫令","桌上立牌「獵巫令」：依序查辦，願主眷顧（DFACBE）。\n下方有算式：1+1=8　2+2=14"),
+O("🧰","角落寶箱","寶箱貼著封條：「魔鬼之物，不可開啟」。6位數密碼鎖。",{c:"417396",h:"依獵巫令的順序 D F A C B E 排列證詞，取出各證詞中的數字（E沒有）。",r:"箱內有日記本、情侶照片、數封情書，以及半張寫著「381」的紙。",g:"半張紙：381"}),
+O("✝️","十字架暗箱","牆上十字架後有個6位數暗箱。",{c:"838147",h:"找出獵巫令下方算式的規律。",r:"箱內有一封燒毀的信，殘角寫著「670」：\n「唯有遵循大天使之意志，才能迎來最後的救贖……誰知道透過醫囑造成她親手扼殺嬰兒的過程，將會是我們最後一塊拼圖呢…謹記：唯有火能淨化一切至最後」",g:"殘角：670"}),
+O("📓","記事錄","開庭與行刑記錄（姓名 年齡 罪名 日期 刑罰）：\n已執行：貞德19異端0530火刑；珍妮21不淨0419絞刑；艾莉絲32不潔1028鋸刑；克里斯汀9女巫0512火刑；瑪格麗特20女巫0810火刑；芙特36異端0412烹刑；泰勒45異端0209火刑；安莉10女巫0111絞刑。\n待執行：羅妮拉24女巫1103火刑；特蘿拉72不潔1224絞刑；蒂芙尼26女巫1024火刑；庫菈絲31異端1121絞刑；伊西斯66不潔0102絞刑；西妮58不淨1007烹刑；貝兒47異端1227絞刑。"),
+O("🗄️","桌子抽屜","辦公桌抽屜上鎖，6位數密碼鎖。",{c:"020934",h:"答案藏在記事錄的日期與數字裡。",r:"抽屜裡有《女巫之槌》，夾著紙條：「大天使帶來上帝的命令，但是黑色的羽翼象徵著不淨，也許這一切都是錯誤的…」\n還有一條十字架手鍊，上有7個英文字母：LUC█FER（其中一個磨損了）。",g:"手鍊：LUC?FER"}),
+O("🚪","房門","門上是字母鍵盤：\n W C N\n E R F\n G U O\n * L #\n輸入5個字母。",{d:1,c:"WRONG",h:"把格子裡 LUCIFER 出現的字母（L、U、C、F、E）去掉，剩下的字母重新排列。",r:"案件的發展已然超乎想像，無辜的人正在被送往刑場的路上，沒多少時間了，盡快前往救人!"})
+]},
+{n:"第三場景：異端裁判所",c:"#3f4a5a",w:"#3c4552",f:"#1c2128",x:[["🔥",22,46],["⛓️",78,2]],p:[[3,6,18,38],[28,6,16,44],[47,6,13,24],[47,32,13,24],[63,6,13,24],[63,32,13,24],[28,56,17,30],[84,6,14,58]],i:"潮濕的地牢，牆上掛滿刑具。四間牢房一字排開。",o:[
+O("🗝️","刑具牆","牆上掛著各種刑具，還有一串鑰匙，標著 A、B、C 三個牢籠。",{g:"牢籠鑰匙"}),
+O("🔒","A牢籠","牆上寫著：「維持心中的光芒，仰頭期盼神蹟降臨。」牢裡放著一支紫外線手電筒和一支一般手電筒。",{need:"牢籠鑰匙",nt:"牢門鎖著，需要鑰匙。",g:"紫外線手電筒"}),
+O("🌑","B牢籠","牢內一片漆黑，用紫外線照向天花板，發光塗料寫著：\n「也許沒有機會再見面了…願來生能再愛你一生一世，我的人生就到今天了」",{need:["牢籠鑰匙","紫外線手電筒"],nt:"牢內一片漆黑。需要鑰匙，也需要一種特殊的光。"}),
+O("📦","B牢籠的箱子","B牢籠裡有個6位數密碼箱。",{need:["牢籠鑰匙","紫外線手電筒"],nt:"牢內一片漆黑，什麼都看不見。",c:"201314",h:"數字諧音：「愛你一生一世」。",r:"箱內紙條：前三碼提示——貞德1、克里斯汀3、瑪格麗特2。",g:"前三碼提示"}),
+O("🌑","C牢籠","牢內一片漆黑，用紫外線照向天花板：\n「我開始不相信上帝了…人世的瘋狂舉動，世界末日降臨，就讓你我一起去死!!!」",{need:["牢籠鑰匙","紫外線手電筒"],nt:"牢內一片漆黑。需要鑰匙，也需要一種特殊的光。"}),
+O("📦","C牢籠的箱子","C牢籠裡有個6位數密碼箱。",{need:["牢籠鑰匙","紫外線手電筒"],nt:"牢內一片漆黑，什麼都看不見。",c:"051774",h:"數字諧音：「你我一起去死」。",r:"箱內紙條：後三碼提示——泰勒5、羅妮拉6、蒂芙尼4。",g:"後三碼提示"}),
+O("⛓️","D牢籠","D牢籠門上有6位數密碼鎖。",{need:["前三碼提示","後三碼提示"],nt:"還缺少人物編號的提示。",c:"909654",h:"依編號 1–6 的順序，輸入每個人歲數的個位數（歲數見記事錄）。",r:"牢內有燒焦的紙角，署名：「艾提著森　給：戰友　約翰」。另一張紙寫著：「天使與魔鬼聯合，創造混世，獻上絕對的忠誠，成為天選之子」。",g:"燒焦紙角"}),
+O("🚪","出口","出口是6位數密碼鎖。",{d:1,c:"381670",h:"把前一個房間找到的兩張殘紙拼起來。",r:"鐵門緩緩開啟。遠處傳來鐘聲，黎明就要到了……"})
+]},
+{n:"第四場景：火刑現場",c:"#a8402f",w:"#b8693f",f:"#3b2a20",x:[["🌅",6,3],["☁️",30,8]],p:[[6,56,22,30],[30,62,14,24],[48,8,16,52],[68,12,14,46],[84,34,14,28]],i:"黎明前的廣場。火刑柱被隔在牢門之後，旁邊有個救火水箱。",o:[
+O("🐂","牛車","牛車上寫著：「用制裁的鐵鎚對女巫降下神罰吧！！！」車底有把鐵鎚，旁邊刻著數字：452193。"),
+O("📦","牛車上的箱子","牛車上有個6位數密碼箱。",{c:"452193",h:"車底刻著的數字。",r:"箱裡是日記本，其中一頁寫著：\n「願上帝憐憫眾【上半部】生，淨化邪【右方】惡的靈魂【鬼的中間田字】吧！！這【言的中間兩橫】雙充滿骯髒血液的手【三橫】，透過鮮紅的火焰，終將獲得究【下方九】贖啊！！署名：艾利克」\n（【】內是紅色的部分）",g:"日記頁"}),
+O("🚪","牢門","牢門有6位數密碼鎖。",{c:"438239",h:"把日記裡紅色的部分轉成數字，依序排列。",r:"牢門開了。火刑柱就在眼前。"}),
+O("🔥","火刑柱","火刑柱後方刻著：「願神、聖十字拯救徬徨的靈魂！！」",{q:2}),
+O("🚰","救火水箱","水箱門是字母按鍵鎖：\n S H T\n G O D\n A L N\n * Y #\n輸入7個字母。",{q:2,d:1,c:"GODHOLY",h:"柱後寫著「神」與「聖」，用英文拼出來。",r:"水流傾瀉而下，火焰熄滅了！你解救了蒂芙尼。\n\n🎉 你逃出來了！"})
+]}];
+var st,cur,$=function(i){return document.getElementById(i)};
+function reset(){st={s:0,k:{},it:[],nt:[],n:0,t0:Date.now()};P.x=50;P.y=62;P.t=null;$("st").textContent=0;draw();say(S[0].i)}
+function say(t){$("msg").textContent=t}
+function note(a,b){if(!st.nt.some(function(x){return x[0]===a}))st.nt.push([a,b]);drawN()}
+function give(g){if(g&&st.it.indexOf(g)<0){st.it.push(g);drawI()}}
+function drawI(){$("inv").innerHTML=st.it.length?"":"（空）";st.it.forEach(function(x){var d=document.createElement("span");d.className="it";d.textContent=x;$("inv").appendChild(d)})}
+function drawN(){$("nc").textContent=st.nt.length;var el=$("notes");el.innerHTML="";st.nt.forEach(function(x){var p=document.createElement("p");p.textContent="【"+x[0]+"】\n"+x[1];el.appendChild(p)})}
+function draw(){
+  var sc=S[st.s];$("sn").textContent=sc.n;document.documentElement.style.setProperty("--sc",sc.c);
+  var g=$("grid");g.innerHTML="";g.style.setProperty("--wall",sc.w);g.style.setProperty("--floor",sc.f);sc.x.forEach(function(d){var e=document.createElement("span");e.className="dc";e.textContent=d[0];e.style.left=d[1]+"%";e.style.top=d[2]+"%";g.appendChild(e)});
+  sc.o.forEach(function(o,i){var p=sc.p[i],b=document.createElement("button");b.style.cssText="left:"+p[0]+"%;top:"+p[1]+"%;width:"+p[2]+"%;height:"+p[3]+"%";b.className="o"+(st.k[st.s+"-"+i]?" ok":"");b.innerHTML=art(o)+o.n+(st.k[st.s+"-"+i]?" ✓":"");b.onclick=function(){walk(i)};g.appendChild(b)});
+  if(!pl){pl=document.createElement("div");pl.className="pl";pl.innerHTML="<svg viewBox='0 0 30 44' width='28' height='40'><ellipse cx='15' cy='42' rx='10' ry='2.5' fill='#000' opacity='.35'/><rect class='lg a' x='9' y='35' width='5' height='8' rx='2' fill='#1b1b1b'/><rect class='lg b' x='16' y='35' width='5' height='8' rx='2' fill='#1b1b1b'/><g class='bd'><path d='M15 14Q4 18 5 38H25Q26 18 15 14Z' fill='#2f5d8a' stroke='#10243a' stroke-width='1.5'/><circle cx='15' cy='9' r='7' fill='#f0c9a0' stroke='#10243a' stroke-width='1.5'/><path d='M8 8Q15 -2 22 8Q15 4 8 8Z' fill='#5a3a1c'/><circle cx='18' cy='9' r='1.2' fill='#222'/></g></svg>"}g.appendChild(pl);place();near=-2;drawI();drawN();
+}
+function miss(o){return [].concat(o.need||[]).filter(function(x){return x==='光源'?!(st.it.indexOf('紫外線手電筒')>=0||st.it.indexOf('一般手電筒')>=0):st.it.indexOf(x)<0})}
+function pick(i){
+  var o=S[st.s].o[i],k=st.s+"-"+i;st.n++;$("st").textContent=st.n;
+  if(o.q!=null&&!st.k[st.s+"-"+o.q])return say("現在還不能這麼做。先處理其他地方。");
+  var m=miss(o);if(m.length)return say(o.nt||("還缺少："+m.join("、")));
+  if(o.back){jump(st.s-1);return}if(o.d&&st.k[k]&&S[st.s+1]){jump(st.s+1);return}note(o.n,o.t);
+  cur=i;zoom(o,o.c&&!st.k[k]);if(!o.c){say(o.t);give(o.g)}return;
+  say(o.t);give(o.g);
+}
+var SH={shelf:['0 0 80 100',`<rect x='2' y='2' width='76' height='96' fill='#6b4423' stroke='#3a2412' stroke-width='3'/><g fill='#2a1a0e'><rect x='7' y='7' width='66' height='26'/><rect x='7' y='37' width='66' height='26'/><rect x='7' y='67' width='66' height='26'/></g><path d='M12 33V13M30 33V15M48 33V11M24 63V40M56 63V42M32 93V70' stroke='#a33' stroke-width='6'/><path d='M21 33V9M14 63V43M42 63V45M14 93V73M52 93V75' stroke='#357' stroke-width='6'/>`],
+desk:['0 0 100 80',`<rect x='2' y='8' width='96' height='12' rx='2' fill='#8a5a2b' stroke='#2a1a0e' stroke-width='2'/><rect x='8' y='20' width='84' height='56' fill='#6b4423' stroke='#2a1a0e' stroke-width='2'/><g fill='#4a2f17'><rect x='12' y='26' width='36' height='20'/><rect x='52' y='26' width='36' height='20'/><rect x='12' y='50' width='76' height='20'/></g><g fill='#e0b040'><circle cx='30' cy='36' r='3'/><circle cx='70' cy='36' r='3'/><circle cx='50' cy='60' r='3'/></g>`],
+door:['0 0 60 100',`<rect x='3' y='3' width='54' height='95' rx='4' fill='#6b4423' stroke='#2a1a0e' stroke-width='3'/><rect x='10' y='10' width='40' height='38' fill='#573719'/><rect x='10' y='54' width='40' height='38' fill='#573719'/><circle cx='46' cy='52' r='3.5' fill='#e0b040'/>`],
+chest:['0 0 100 80',`<rect x='6' y='28' width='88' height='46' rx='4' fill='#7a4a22' stroke='#2a1a0e' stroke-width='3'/><path d='M6 30Q50 -6 94 30Z' fill='#8a5a2b' stroke='#2a1a0e' stroke-width='3'/><rect x='43' y='30' width='14' height='18' rx='2' fill='#e0b040' stroke='#2a1a0e' stroke-width='2'/>`],
+crib:['0 0 100 80',`<path d='M14 20V70M28 20V70M42 20V70M56 20V70M70 20V70M84 20V70' stroke='#d9c7a0' stroke-width='4'/><rect x='6' y='14' width='88' height='8' rx='2' fill='#b89a6a'/><rect x='6' y='66' width='88' height='8' rx='2' fill='#b89a6a'/><path d='M10 74V80M90 74V80' stroke='#b89a6a' stroke-width='5'/>`],
+cauldron:['0 0 100 90',`<path d='M24 78l-6 12M76 78l6 12' stroke='#111' stroke-width='5'/><path d='M10 28Q8 80 50 82Q92 80 90 28Z' fill='#333' stroke='#111' stroke-width='3'/><ellipse cx='50' cy='28' rx='40' ry='10' fill='#222' stroke='#111' stroke-width='3'/><ellipse cx='50' cy='28' rx='33' ry='7' fill='#4aa860'/>`],
+cloak:['0 0 80 100',`<path d='M40 4Q20 10 18 34L6 96H74L62 34Q60 10 40 4Z' fill='#4a2f6a' stroke='#241438' stroke-width='3'/><path d='M40 14Q30 22 40 38Q50 22 40 14Z' fill='#1a0f28'/><circle cx='40' cy='46' r='3' fill='#e0b040'/>`],
+cup:['0 0 60 80',`<path d='M12 10H48L42 72H18Z' fill='#bfe3f2' fill-opacity='.45' stroke='#e8f6ff' stroke-width='3'/><path d='M14 32H46L42 70H18Z' fill='#7ab8d8' fill-opacity='.6'/>`],
+bin:['0 0 70 100',`<path d='M10 20H60L54 96H16Z' fill='#7a8085' stroke='#2a2e30' stroke-width='3'/><rect x='6' y='10' width='58' height='10' rx='3' fill='#9aa0a5'/><path d='M24 30V86M35 30V86M46 30V86' stroke='#4b5155' stroke-width='2'/>`],
+broom:['0 0 50 100',`<path d='M26 2V62' stroke='#8a5a2b' stroke-width='5'/><path d='M12 62H40L46 98H6Z' fill='#d2a84a' stroke='#7a5a1a' stroke-width='2'/>`],
+calendar:['0 0 70 90',`<rect x='4' y='4' width='62' height='82' fill='#f6efe0' stroke='#333' stroke-width='2'/><rect x='4' y='4' width='62' height='20' fill='#a33'/><text x='35' y='19' font-size='12' fill='#fff' text-anchor='middle'>葡月</text><path d='M12 38H58M12 50H58M12 62H58M12 74H58M24 28V80M36 28V80M48 28V80' stroke='#bbb'/><circle cx='42' cy='56' r='6' fill='none' stroke='#a33' stroke-width='2'/>`],
+book:['0 0 80 70',`<rect x='6' y='8' width='68' height='54' rx='3' fill='#7a2d2d' stroke='#2a1010' stroke-width='3'/><rect x='14' y='14' width='52' height='42' fill='#e9dcc0'/><path d='M40 14V56M20 26H36M20 34H36M44 26H60M44 34H60' stroke='#8a7a5a' stroke-width='2'/>`],
+board:['0 0 80 90',`<rect x='6' y='6' width='68' height='78' fill='#d8c8a0' stroke='#5a3a1c' stroke-width='3'/><path d='M16 24H64M16 36H64M16 48H52M16 60H60' stroke='#6a5a3a' stroke-width='3'/><circle cx='40' cy='14' r='4' fill='#a33'/>`],
+cross:['0 0 70 100',`<rect x='28' y='4' width='14' height='92' fill='#6b4423' stroke='#2a1a0e' stroke-width='2'/><rect x='6' y='26' width='58' height='14' fill='#6b4423' stroke='#2a1a0e' stroke-width='2'/><rect x='30' y='62' width='10' height='14' fill='#e0b040'/>`],
+cage:['0 0 70 100',`<rect x='4' y='4' width='62' height='92' fill='#000' fill-opacity='.35' stroke='#7a7f85' stroke-width='4'/><path d='M16 4V96M28 4V96M40 4V96M52 4V96' stroke='#9aa0a5' stroke-width='4'/><rect x='26' y='50' width='18' height='14' fill='#b08a30'/>`],
+tools:['0 0 100 100',`<path d='M10 14H90' stroke='#555' stroke-width='4'/><path d='M22 14V60M50 14V76M76 14V44' stroke='#9aa0a5' stroke-width='4'/><path d='M12 60H32L22 82Z M42 76H58V90H42Z' fill='#777'/><circle cx='76' cy='56' r='10' fill='none' stroke='#b08a30' stroke-width='4'/>`],
+cart:['0 0 110 80',`<rect x='8' y='24' width='94' height='24' fill='#7a4a22' stroke='#2a1a0e' stroke-width='3'/><circle cx='28' cy='62' r='14' fill='#5a3a1c' stroke='#2a1a0e' stroke-width='3'/><circle cx='84' cy='62' r='14' fill='#5a3a1c' stroke='#2a1a0e' stroke-width='3'/><path d='M102 30l8-14' stroke='#2a1a0e' stroke-width='4'/>`],
+stake:['0 0 70 100',`<rect x='30' y='4' width='10' height='88' fill='#6b4423'/><path d='M6 96H64L50 72H20Z' fill='#5a3a1c'/><path d='M14 92Q20 76 28 88Q34 70 42 86Q50 74 56 92Z' fill='#e8742a'/>`],
+tank:['0 0 80 100',`<rect x='6' y='10' width='68' height='86' rx='4' fill='#3d5a73' stroke='#1a2a38' stroke-width='3'/><rect x='16' y='22' width='48' height='32' fill='#9bb8cc'/><g fill='#d9e6ee'><rect x='18' y='62' width='12' height='10'/><rect x='34' y='62' width='12' height='10'/><rect x='50' y='62' width='12' height='10'/><rect x='18' y='78' width='12' height='10'/><rect x='34' y='78' width='12' height='10'/></g>`]};
+var M={};'desk:書桌,桌子抽屜;shelf:書櫃,書櫃卷宗;book:嬰兒日記,記事錄,案件卷宗;chest:書櫃旁小盒,甕下的箱子,角落寶箱,B牢籠的箱子,C牢籠的箱子,牛車上的箱子;bin:垃圾桶;cauldron:鍊藥甕;cloak:奇怪的斗篷;cup:玻璃杯;crib:嬰兒床;broom:掃把;door:房門,牢門,出口;calendar:月曆;board:關係圖,獵巫令;cross:十字架暗箱;tools:刑具牆;cage:A牢籠,B牢籠,C牢籠,D牢籠;cart:牛車;stake:火刑柱;tank:救火水箱'.split(';').forEach(function(s){var a=s.split(':');a[1].split(',').forEach(function(n){M[n]=a[0]})});
+function art(o){var f=SH[M[o.n]];return f?"<svg viewBox='"+f[0]+"' preserveAspectRatio='xMidYMid meet'>"+f[1]+"</svg>":"<b>"+o.e+"</b>"}
+function calH(){var n='葡萄,藏紅花,栗子,秋水仙,馬,鳳仙花,胡蘿蔔,莧菜,防風草,大桶,馬鈴薯,永久花,大南瓜,木犀草,驢,紫茉莉,南瓜,蕎麥,向日葵,榨汁機,大麻,桃,蕪菁,孤挺花,牛,茄子,辣椒,番茄,大麥,酒桶'.split(','),h=`<div style='font-weight:700;text-align:center;margin-bottom:4px'>法國共和曆・葡月（共和曆日／對應國曆）</div><div class='cg'>`;n.forEach(function(x,i){var d=i+1;h+=`<div class='cd'><b>${d}</b>${x}<small>${d<10?'9/'+(21+d):'10/'+(d-9)}</small></div>`});return h+'</div>'}
+var OG={腦:`<path d='M28 52Q20 30 44 22Q60 12 80 24Q100 32 92 54Q90 68 72 66Q62 76 50 66Q32 68 28 52Z'/><path d='M40 40Q50 32 58 42T74 38M38 54Q48 46 58 56T80 52M52 26Q56 36 50 46' fill='none'/><path d='M60 70Q58 82 64 88' fill='none'/>`,心:`<path d='M60 82Q20 58 30 36Q44 20 60 36Q76 20 90 36Q100 58 60 82Z'/><path d='M54 36Q50 20 42 12M66 36Q70 20 80 14M60 40Q58 60 62 74' fill='none'/>`,胃:`<path d='M42 18Q38 50 46 64Q60 82 82 70Q94 60 84 50Q74 56 68 48Q62 38 64 18Z'/><path d='M42 18V6M64 18V8' fill='none'/>`,肺:`<path d='M54 18Q28 24 24 60Q24 84 46 82Q58 80 54 50Z'/><path d='M66 18Q92 24 96 60Q96 84 74 82Q62 80 66 50Z'/><path d='M60 6V40M60 40L47 54M60 40L73 54' fill='none'/>`,生殖:`<path d='M60 20Q42 22 44 44Q48 58 60 76Q72 58 76 44Q78 22 60 20Z'/><path d='M46 28Q28 24 22 38M74 28Q92 24 98 38' fill='none'/><ellipse cx='22' cy='46' rx='6' ry='8'/><ellipse cx='98' cy='46' rx='6' ry='8'/>`,腳:`<path d='M20 62Q18 46 34 44L56 42Q66 28 78 34L98 58Q102 72 84 74L32 78Q20 78 20 62Z'/><path d='M84 56L98 52M80 64L99 64M74 70L96 76M44 54H70M40 62H66' fill='none'/>`};
+function orgH(k){return `<svg viewBox='0 0 120 100'><defs><pattern id='ht' width='3' height='3' patternUnits='userSpaceOnUse'><path d='M0 3L3 0' stroke='#4a3622' stroke-width='.5'/></pattern></defs><rect x='1' y='1' width='118' height='98' fill='#e8d9b5' stroke='#4a3622' stroke-width='1.5'/><g fill='url(#ht)' stroke='#4a3622' stroke-width='1.3'>${OG[k]}</g><text x='60' y='96' font-size='5' text-anchor='middle' fill='#4a3622'>DE HUMANI CORPORIS FABRICA · MDXLIII</text></svg>`}
+var dp=0,V={};
+var DP=[`<div style='text-align:center;font-size:1.1rem;padding-top:40px'>📖<br><b>嬰兒日記</b></div>`,`<b>9月12日　晴</b><br>寶貝出生了！3公斤2，哭聲好響亮。艾利克抱著他，笑得像個孩子。`,`<b>9月28日　陰</b><br>今天第一次對我笑了。整夜只睡了兩個小時，卻一點也不覺得累。`,`<b>10月9日　雨</b><br>他會抓著我的手指不放了。艾利克說，這雙手像他。`,`<b>10月17日　陰</b><br>下午，寶貝哭鬧不止，還發起高燒。我抱著他衝去找醫生。醫生囑咐：藥品須每隔2小時服下，直到體溫下降至穩妥，才可以停止。<br>自下午6點起，他的情況愈來愈糟，一直到隔天上午6點……他再也沒有睜開眼睛。`,`<b>（同日深夜）</b><br>凌晨時分，依稀聽到窗外有人在說著悄悄話…<br>「只剩下2個了，即將湊足666數，迎接3位墮天使與7原罪降臨。」<br>這是什麼意思？？`,`<b>10月1█日</b><br>▒▒▒▒▒▒ 門外有人在敲 ▒▒▒▒▒▒▒<br>▒▒▒▒▒▒▒▒▒▒▒▒▒ 他們 ▒▒▒▒<br><i>（這一頁大半被燒毀，只剩殘破的邊角。）</i>`],BC=['bn','','','','bn','','bg'];
+function diaryH(){var n=DP.length;return `<div class='pg ${BC[dp]}'>${DP[dp]}</div><div style='display:flex;justify-content:space-between;align-items:center;margin-top:8px'><button class='b' data-pg='-1' ${dp?'':'disabled'}>◀ 上一頁</button><span>${dp+1} / ${n}</span><button class='b' data-pg='1' ${dp<n-1?'':'disabled'}>下一頁 ▶</button></div>`}
+$('zd').onclick=function(e){var t=e.target.closest&&e.target.closest('[data-pg]');if(t&&!t.disabled){dp=Math.max(0,Math.min(DP.length-1,dp+(+t.dataset.pg)));this.innerHTML=diaryH()}};
+V.dia=function(){dp=0;return diaryH()};
+V.inv=function(l,o){return `<div class='cv'><div style='letter-spacing:.4em;font-size:.8rem'>✦ 邀 請 函 ✦</div><div style='font-size:1.4rem;margin:4px 0'>🌙 🍇</div><div style='font-size:.9rem;line-height:1.9'>致我忠誠的僕人啊…<br>吾主於月下葡萄樹的茄子之日，<br>幻化山羊降臨，今夜特令巫魔相聚。<br>此箱為據，毀世而滅人，<br>末日將近，吾主將掌握世界。</div><div style='margin-top:8px'><span class='ws'>∴</span></div></div><div style='margin-top:8px'>`+(l?'桌下有個4位數密碼箱。':o.r)+`</div>`};
+V.shelf=function(){return `書櫃上擺滿書：育兒、家庭照顧、魔鬼崇拜、練藥術……其中一本是維薩留斯《論人體的構造》，翻開的附圖如下：<svg viewBox='0 0 200 220'><defs><pattern id='h2' width='3' height='3' patternUnits='userSpaceOnUse'><path d='M0 3L3 0' stroke='#4a3622' stroke-width='.5'/></pattern></defs><rect x='1' y='1' width='198' height='218' fill='#e8d9b5' stroke='#4a3622' stroke-width='1.5'/><g fill='none' stroke='#4a3622' stroke-width='1.3'><circle cx='100' cy='26' r='15'/><path d='M100 42Q84 44 74 52Q64 56 58 90L62 122L72 112L76 80L80 130L76 196L90 200L98 150L102 150L110 200L124 196L120 130L124 80L128 112L138 122L142 90Q136 56 126 52Q116 44 100 42Z'/><path d='M46 22H90M44 68H90M44 98H102M124 72H152M108 128H152M92 202H152' stroke-width='.8' stroke-dasharray='2 2'/></g><g fill='url(#h2)' stroke='#4a3622' stroke-width='1.1'><ellipse cx='100' cy='22' rx='9' ry='7'/><path d='M96 78Q86 70 90 64Q95 60 98 66Q102 60 106 64Q110 70 96 78Z'/><path d='M84 56Q74 60 74 80Q80 86 90 80Q90 64 84 56Z'/><path d='M114 56Q124 60 124 80Q118 86 108 80Q108 64 114 56Z'/><path d='M102 90Q112 90 114 98Q114 106 106 106Q100 104 102 98Z'/><path d='M100 118Q92 118 92 126Q96 134 100 138Q104 134 108 126Q108 118 100 118Z'/><path d='M78 198L90 198L92 204Q80 208 68 206Q70 200 78 198Z'/></g><g font-size='10' font-weight='700' fill='#4a3622'><text x='6' y='25'>腦 5</text><text x='6' y='71'>心 7</text><text x='6' y='101'>胃 1</text><text x='154' y='75'>肺 8</text><text x='154' y='131'>生殖 0</text><text x='154' y='205'>腳 2</text></g></svg><div style='font-size:.82rem'>圖版附表（由頭至腳依序）：腦5・心7・胃1・肺8・生殖0・腳2</div>`};
+function pk(c,s){return `<rect x='-15' y='-16' width='30' height='32' fill='${c}' stroke='${s}'/><path d='M-15 -10H15M-15 10H15' stroke='${s}'/>`}
+var MD=[`<ellipse rx='17' ry='9' fill='#f3e49a' stroke='#8a7a30'/>`,`<rect x='-21' y='-5' width='42' height='10' rx='5' fill='#3fa34d' stroke='#1d5a26'/>`,`<rect x='-20' y='-7' width='40' height='14' rx='7' fill='#fff' stroke='#345'/><path d='M0 -7H13Q20 -7 20 0Q20 7 13 7H0Z' fill='#2f6fd0'/>`,pk('#8b5a2b','#4a2f12'),pk('#b9e6a0','#5a8a40'),pk('#c0c4c8','#6a6f74'),`<ellipse rx='17' ry='9' fill='#f39a2e' stroke='#8a4a08'/>`,`<rect x='-14' y='-12' width='28' height='24' rx='9' fill='#111'/><ellipse cx='-5' cy='-5' rx='4' ry='2' fill='#fff' opacity='.35'/>`,`<ellipse rx='17' ry='9' fill='#fafafa' stroke='#999'/>`,`<circle r='11' fill='#1c1c1c' stroke='#555'/><circle cx='-4' cy='-4' r='2.5' fill='#fff' opacity='.3'/>`];
+V.med=function(l,o){if(l)return o.t;var g=MD.map(function(m,i){return `<g transform='translate(${30+i%5*60},${28+Math.floor(i/5)*68})'>${m}<text y='40' text-anchor='middle' font-size='12' fill='currentColor'>${(i+1)%10}</text></g>`}).join('');return `<svg viewBox='0 0 300 140'>${g}</svg><div style='font-size:.8rem'>${o.r}</div>`};
+V.rx=function(l,o){if(l)return o.t;return `<div class='rx'><div style='display:flex;justify-content:space-between'><b style='font-size:1.1rem;letter-spacing:.3em'>處 方 簽</b><span>10月17日</span></div><hr style='border:0;border-top:1px dashed #8b7a5e'><div>病名：<b>高熱不退</b>　　患者：嬰兒</div><div style='font-size:1.3rem;margin:4px 0'>℞</div><div>依序餵食（每隔 2 小時一次）：<br>① 退熱藥　② 體力藥　③ 羊角藥<br>④ 維生素　⑤ 罌粟花　⑥ 蟾蜍粉</div><hr style='border:0;border-top:1px dashed #8b7a5e'><div style='display:flex;justify-content:space-between;align-items:flex-end'><span>醫師：艾森</span><svg viewBox='0 0 110 40' style='width:120px;height:44px;margin:0'><path d='M4 28Q14 4 22 26T38 14T52 30Q60 8 70 28T88 18T106 26' fill='none' stroke='#1d2f5a' stroke-width='2' stroke-linecap='round'/><text x='56' y='38' text-anchor='middle' font-size='11' font-style='italic' font-family='cursive,serif' fill='#1d2f5a'>Eisen</text></svg></div></div>`};
+var LD={0:'abcdef',1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg',7:'abc',8:'abcdefg',9:'abcdfg'},LS={a:'M2 2H10',b:'M11 3V9',c:'M11 11V17',d:'M2 18H10',e:'M1 11V17',f:'M1 3V9',g:'M2 10H10'};
+function lcdG(s){var o='';for(var i=0;i<s.length;i++){var c=s[i],g='';if(LD[c]!==undefined){for(var k in LS)g+=`<path d='${LS[k]}' opacity='${LD[c].indexOf(k)<0?.08:1}'/>`}else if(c==='+')g=`<path d='M3 10H9M6 7V13'/>`;else if(c==='-')g=`<path d='M3 10H9'/>`;else if(c==='=')g=`<path d='M3 7H9M3 13H9'/>`;o+=`<g transform='translate(${i*15},0)'>${g}</g>`}return `<g stroke='#1d2a16' stroke-width='2' stroke-linecap='round' fill='none'>${o}</g>`}
+function lcd(s,w){w=w||13;return `<span class='lc'><svg viewBox='0 0 ${s.length*15+2} 20' style='width:${s.length*w}px;height:auto;margin:0;display:block'>${lcdG(s)}</svg></span>`}
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+var hf=0,pp=0;
+V.shelf=function(){return `書櫃上擺滿書：育兒、家庭照顧、魔鬼崇拜、練藥術……其中一本是維薩留斯《論人體的構造》，翻開的附圖如下：<svg viewBox='0 0 220 256'><defs><pattern id='h2' width='3' height='3' patternUnits='userSpaceOnUse'><path d='M0 3L3 0' stroke='#4a3622' stroke-width='.5'/></pattern><g id='bh'><path d='M110 58Q92 56 76 64Q64 70 62 94L56 138L48 166L56 170L60 166L68 140L76 106L80 130Q78 142 86 152L88 196L90 232L80 240L84 246L98 246L98 236L100 196L108 158L110 154'/><path d='M110 76Q96 76 88 84M110 84Q96 84 86 92M110 92Q98 92 88 100'/></g></defs><rect x='1' y='1' width='218' height='254' fill='#e8d9b5' stroke='#4a3622' stroke-width='1.5'/><g fill='none' stroke='#4a3622' stroke-width='1.3'><ellipse cx='110' cy='30' rx='16' ry='20'/><circle cx='103' cy='32' r='2'/><circle cx='117' cy='32' r='2'/><path d='M104 50V58M116 50V58M110 58V154'/><use href='#bh'/><use href='#bh' transform='translate(220,0) scale(-1,1)'/><path stroke-width='.8' stroke-dasharray='2 2' d='M32 24H100M120 80H168M126 100H168M32 108H84M134 124H168M32 128H94M40 146H104M32 166H46M138 196H168M32 244H80'/></g><g fill='url(#h2)' stroke='#4a3622' stroke-width='1.1'><ellipse cx='110' cy='22' rx='10' ry='8'/><path d='M102 66Q86 68 84 92Q84 108 96 108Q104 106 102 86Z'/><path d='M118 66Q134 68 136 92Q136 108 124 108Q116 106 118 86Z'/><path d='M110 90Q99 82 103 75Q108 71 110 77Q112 71 117 75Q121 82 110 90Z'/><path d='M112 94Q124 94 126 104Q126 114 116 114Q108 112 110 104Z'/><path d='M112 118Q132 114 134 126Q124 134 112 128Z'/><ellipse cx='98' cy='128' rx='4' ry='7'/><path d='M110 140Q104 140 104 146Q106 150 110 154Q114 150 116 146Q116 140 110 140Z'/><ellipse cx='52' cy='166' rx='5' ry='7'/><circle cx='132' cy='196' r='6'/><path d='M82 238L96 238L98 246L80 246Z'/></g><g font-size='10' font-weight='700' fill='#4a3622'><text x='2' y='27'>腦 5</text><text x='2' y='111'>肺 8</text><text x='2' y='131'>腎 9</text><text x='2' y='149'>生殖 0</text><text x='2' y='169'>手 3</text><text x='2' y='247'>腳 2</text><text x='170' y='83'>心 7</text><text x='170' y='103'>胃 1</text><text x='170' y='127'>肝 6</text><text x='170' y='199'>膝 4</text></g></svg><div style='font-size:.82rem'>圖版附表：0 生殖・1 胃・2 腳・3 手・4 膝・5 腦・6 肝・7 心・8 肺・9 腎</div>`};
+function huntH(){var h;if(!hf)h=`<div style='text-align:center'><b>獵 巫 令</b><br>依序查辦，願主眷顧<br><b>（DFACBE）</b></div>`;else h=`<div style='text-align:center'>`+['1+1=4','2+2=10','3+8=12','5-7=3','2-1=3','8-9=1','2=5','4=4','10=8','15=7','18=9','16=8'].map(function(e){return lcd(e)}).join('')+`<br><div class='lf'>`+['7+5','3-1','7+8','3-4','8-7','1+3'].map(function(e){return lcd(e,10)}).join('')+`</div><div style='letter-spacing:.2em'>看清線索　數字為真　唯一真理</div></div>`;return `<div class='rx'>${h}</div><div style='text-align:center;margin-top:8px'><button class='b' data-fl='1'>🔄 ${hf?'翻到正面':'翻到背面'}</button></div>`}
+V.hunt=function(){hf=0;return huntH()};
+V.files=function(){var T=['A：73號那位單身婦人總是很寶貝一個箱子，如果去動她，她會很生氣。','B：她總說那是她仈夫在結婚6年時送她的禮物，但是我們都沒看過那位仈夫。','C：我聽說那是她的老相好送她的禮物，裡面放著她重要的9個物件。','D：她平日沒事總會偷偷躲在後方羊圈的一個房間跟一隻山羊很親暱，那個房間好像是4號。','E：山羊是惡魔的化身，那個寶箱一定放著各種禍害我們的毒藥。','F：一定是這樣，我有看到她在凌晨1點的時候偷偷往森林，還帶著那隻山羊跟那個箱子！！！'];return ['小村毒水','巫魔聚會','孩童失蹤','詭譎天氣'].map(function(n){return `<div class='cf'>${n}　（已焚毀）</div>`}).join('')+`<div class='rx' style='margin-top:6px'><b>〈魔鬼之箱〉證詞</b>`+T.map(function(t){return `<div>${t.replace(/\d+/g,function(m){return `<b style='color:#e03030'>${m}</b>`})}</div>`}).join('')+`</div>`};
+V.case=function(){return `<div class='rx'><div style='text-align:right;font-weight:700'>案件：親母弒子</div><div>被告：蒂芙尼</div><div>罪名：巫女</div><div>判決：被告坦承罪刑，處以火刑（訂於10/24執行）</div><b>仈夫證詞：</b><ol><li>蒂芙尼多次晚上外出，不知去向。</li><li>孩子常在仈夫不在家時，病情惡化。</li><li>在家中房間搜出巫魔會請帖，證實蒂芙尼為巫女。</li></ol><b>醫生證詞：</b><ol><li>藥品處方沒有問題，檢證後發現孩子胃裡有其他奇怪的藥品。</li><li>應為蒂芙尼餵藥時，一併掃入，導致孩子搶救無效。</li><li>蒂芙尼有多次趨著仈夫不在，引誘醫生的舉動。</li></ol><b>（偵測巫女）</b><div>使用銀針戳入蒂芙尼腰間時，蒂芙尼沒有反應，證實為惡魔締結之處。</div><b>備註：</b><ol><li>抓捕被告於10/18家中，搜出巫女相關物件。[封箱處理]</li><li>10/19依教令執行刑罰，被告否認。</li><li>10/21被告進行第1-5場審問，用刑後多次昕厥，潑水喚醒後再審問。</li><li>10/22被告進行第6場審問，被告意識不清，宣告動用刑罰時，被告承認罪刑。</li><li>10/23法庭審判，處以火刑，訂於10/24 執行，以淨化該名巫女之靈魂。</li></ol><div style='display:flex;justify-content:flex-end;align-items:flex-end;gap:6px'>審判官：<svg viewBox='0 0 90 34' style='width:90px;height:34px;margin:0'><path d='M4 24Q12 4 20 22T36 12T52 26' fill='none' stroke='#1d2f5a' stroke-width='2'/><text x='46' y='30' font-size='12' font-style='italic' font-family='cursive,serif' fill='#1d2f5a'>John</text></svg>(約翰)</div></div>`};
+V.rec=function(){var P2=[['貞德',19,'異端','0530','火刑'],['珍妮',21,'不淨','0419','絞刑'],['艾莉絲',32,'不潔','1028','鋸刑'],['克里斯汀',9,'巫女','0512','火刑'],['瑪格麗特',20,'巫女','0810','火刑'],['芙特',36,'異端','0412','烹刑'],['泰勒',45,'異端','0209','火刑'],['安莉',10,'巫女','0111','絞刑'],['羅妮拉',24,'巫女','1103','火刑'],['特蘿拉',72,'不潔','1224','絞刑'],['蒂芙尼',26,'巫女','1024','火刑'],['庫菈絲',31,'異端','1121','絞刑'],['伊西斯',66,'不潔','0102','絞刑'],['西妮',58,'不淨','1007','烹刑'],['貝兒',47,'異端','1227','絞刑']];var rows=P2.map(function(r,i){return `<tr><td>${r.join('</td><td>')}</td><td>定讞</td><td>${i<8?'已執行':'未執行'}</td></tr>`}).join('');return `<div class='rx' style='padding:6px'><b>開庭與行刑記事錄</b><table class='tb'><tr><th>姓名</th><th>歲數</th><th>罪名</th><th>行刑日期</th><th>刑罰</th><th>判決結果</th><th>是否執行</th></tr>${rows}</table></div>`};
+V.chest=function(l,o){if(l)return o.t;var h=Math.floor(Math.random()*360),lt=['我想把一輩子都借給你','今夜月色很美，你聽見了嗎','別怕，我會一直在','等我，我會帶你離開這裡','你的名字是我最溫柔的秘密'],dr=['今天他又抱怨藥太苦了。','窗外一直有人影。','我們約好月圓那天見面。','火光裡，似乎有誰在說話。'];return `<div style='display:flex;gap:6px;flex-wrap:wrap;justify-content:center'><svg viewBox='0 0 100 80' style='width:46%;margin:0'><rect x='4' y='4' width='92' height='72' fill='#f4ecd6' stroke='#6a5a3a'/><rect x='10' y='10' width='80' height='54' fill='hsl(${h},30%,68%)'/><circle cx='38' cy='34' r='8' fill='#3a2a1a'/><path d='M24 64Q38 40 52 64Z' fill='#3a2a1a'/><circle cx='62' cy='32' r='8' fill='#5a3a2a'/><path d='M48 64Q62 38 76 64Z' fill='#5a3a2a'/><path d='M50 22q-5-9 0-9q5 0 0 9' fill='#c33'/></svg><div style='width:48%;font-size:.78rem'><div class='pg' style='min-height:0;padding:6px;margin-bottom:4px'>📔 ${rnd(dr)}</div><div class='pg' style='min-height:0;padding:6px;margin-bottom:4px'>✉️ ${rnd(lt)}</div><div class='pg' style='min-height:0;padding:6px'>✉️ ${rnd(lt)}</div></div></div><svg viewBox='0 0 120 52' style='margin-top:8px'><defs><clipPath id='lo'><rect x='0' y='10' width='120' height='20'/></clipPath></defs><path d='M2 8L20 2L40 9L60 3L82 10L102 4L118 11L114 30L119 44L96 50L74 43L52 51L30 44L10 50L3 38L6 22Z' fill='#e6d8b4' stroke='#6a5a3a'/><g transform='translate(12,12)' clip-path='url(#lo)'>${lcdG('381670')}</g></svg>`+o.r};
+V.cross=function(l,o){if(l)return o.t;return `<div class='pg bd2'><b>給約翰：</b><br>唯有遵循大天使之意志，才能迎來最後的救贖……誰知道透過醫囑造成她親手扭殺嬰兒的過程，將會是我們最後一塊拼圖呢…謹記：<b style='color:#e03030'>「唯有火能淨化一切至最後」</b><svg viewBox='0 0 220 56' style='margin-top:6px'><defs><clipPath id='sg'><rect x='0' y='0' width='58' height='56'/></clipPath><clipPath id='up'><rect x='0' y='0' width='120' height='10'/></clipPath></defs><text x='4' y='14' font-size='9'>戰友 艾森</text><g clip-path='url(#sg)'><path d='M4 40Q14 14 22 38T40 26T58 42' fill='none' stroke='#1d2f5a' stroke-width='2'/><text x='20' y='50' font-size='13' font-style='italic' font-family='cursive,serif' fill='#1d2f5a'>Eisen</text></g><g transform='translate(112,22)' clip-path='url(#up)'>${lcdG('381670')}</g><path d='M108 33L120 29L140 34L160 28L180 34L204 29L220 35V56H108Z' fill='#120905'/></svg></div>`};
+function brH(){var L='LUC?FER',s='';for(var i=0;i<7;i++){var th=Math.PI*i/6,x=100-80*Math.cos(th),y=24+46*Math.sin(th),a=(th-Math.PI/2)*180/Math.PI;s+=`<g transform='translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${a.toFixed(1)})'><rect x='-9' y='-9' width='18' height='18' rx='2' fill='#c9ced3' stroke='#6a6f74'/>`+(i===3?`<path d='M-6 -4L5 5M-4 6L6 -5M-6 1L2 -3' stroke='#7a7f85' stroke-width='1'/>`:`<text y='4' text-anchor='middle' font-size='11' font-weight='700' fill='#3a3f44'>${L[i]}</text>`)+`</g>`}return `<svg viewBox='0 0 200 130' style='width:80%'><path d='M20 24Q100 116 180 24' fill='none' stroke='#9aa0a5' stroke-width='2'/>${s}<path d='M100 82V112M90 92H110' stroke='#c9ced3' stroke-width='5'/></svg>`}
+function drwH(){return `<div style='text-align:center'><svg viewBox='0 0 160 90' style='width:70%'><rect x='20' y='20' width='110' height='66' rx='4' fill='#2a1a12' stroke='#000'/><text x='75' y='60' fill='#c9a24a' font-size='11' text-anchor='middle'>巫女之槌</text><g data-pp='1' style='cursor:pointer'><path d='M88 6L126 16L120 56L84 46Z' fill='#f1e6c4' stroke='#8b7a5e'/><path d='M92 18L118 24M91 28L116 34M90 38L112 42' stroke='#8b7a5e'/></g></svg><div style='font-size:.8rem'>書裡夾著一張紙（點選紙張）</div>${pp?`<div class='pg' style='min-height:0;margin:6px 0'>大天使帶來上帝的命令，但是黑色的羽翼象徵著不淨，也許這一切都是錯誤的…</div>`:''}<div style='font-size:.8rem;margin-top:6px'>十字架手鏈</div>${brH()}</div>`}
+V.drw=function(l,o){if(l)return o.t;pp=0;return drwH()};
+$('zd').addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-fl],[data-pp]');if(!t)return;if(t.dataset.fl){hf=!hf;this.innerHTML=huntH()}else{pp=1;note('夾在書裡的紙','大天使帶來上帝的命令，但是黑色的羽翼象徵著不淨，也許這一切都是錯誤的…');this.innerHTML=drwH()}});
+(function(){var s2=S[1].o,nm=function(){return s2.map(function(x){return x.n})},N=function(n){return s2.filter(function(x){return x.n===n})[0]},i1=nm().indexOf('關係圖'),i6=nm().indexOf('記事錄');s2[i1]=s2[i6];s2.splice(i6,1);S[1].p.splice(i6,1);
+var c=N('案件卷宗');c.v='case';c.t='案件：親母弒子。被告：蒂芙尼。罪名：巫女。判決：被告坦承罪刑，處以火刑（訂於10/24執行）。審判官：John（約翰）。';N('記事錄').v='rec';
+var hn=N('獵巫令');hn.v='hunt';hn.t='獵巫令：依序查辦，願主眷顧（DFACBE）。背面還有一排算式與六個框起來的算式，寫著：看清線索　數字為真　唯一真理。';
+var fl=N('書櫃卷宗');fl.v='files';fl.t=fl.t.replace('卷宗有：小村毒水、魔鬼之箱、巫魔聚會、孩童失蹤、詭譎天氣。','書櫃裡的卷宗：小村毒水、巫魔聚會、孩童失蹤、詭譎天氣都已被焚毀，只剩〈魔鬼之箱〉完好。');
+var cb=N('角落寶箱');cb.v='chest';cb.g='撕破的紙（數字下半部）';cb.r='箱內有日記本、情侶照片、數封情書，還有一張被撕破的紙，上面只剩六個數字的下半部。';
+var cx=N('十字架暗箱');cx.v='cross';cx.g='燒焦的信（數字上半部）';cx.r='暗箱裡是一張周邊燒焦的信，寫給約翰，署名「戰友 艾森」，右下角被燒掉一半，只剩六個數字的上半部。';
+var dw=N('桌子抽屜');dw.v='drw';dw.r='抽屜裡有一本《巫女之槌》，夾著一張紙；還有一條十字架手鏈，串著七個銀色方塊，刻著 LUC?FER，中間那個磨損到無法辨認。';
+var sf=S[0].o.filter(function(x){return x.n==='書櫃'})[0];sf.t=sf.t.replace('腦5、心7、胃1、肺8、生殖0、腳2','0生殖、1胃、2腳、3手、4膝、5腦、6肝、7心、8肺、9腎')})();
+V.pad=function(l,o){if(!l)return o.r;return `<div style='font-size:.85rem'>門上是字母鍵盤，輸入 5 個字母。<br>＊ 清除　＃ 確認</div><div class='kp'>${['W','C','N','E','R','F','G','U','O','*','L','#'].map(function(k){return `<button class='kb' data-k='${k}'>${k}</button>`}).join('')}</div>`};
+$('zd').addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-k]');if(!b)return;var k=b.dataset.k,i=$('in');if(k==='*')i.value='';else if(k==='#')$('go').click();else if(i.value.length<8)i.value+=k});
+S[1].o.filter(function(x){return x.n==='房門'})[0].v='pad';
+V.wall=function(){var ks=['A','B','C'].map(function(k,i){var x=70+i*80;return st.it.indexOf('鑰匙'+k)>=0?`<text x='${x}' y='56' font-size='10' fill='#888' text-anchor='middle'>（已取走 ${k}）</text>`:`<g data-key='${k}' style='cursor:pointer' transform='translate(${x},14)'><circle cx='0' cy='10' r='9' fill='none' stroke='#b08a30' stroke-width='4'/><path d='M0 19V52M0 40H8M0 48H8' stroke='#b08a30' stroke-width='4'/><text y='68' text-anchor='middle' font-size='13' font-weight='700' fill='#d9c27a'>${k}</text></g>`}).join('');return `牆上掛著各種刑具，還有三把鑰匙，標著 A、B、C。點選鑰匙把它取下來：<svg viewBox='0 0 300 100'><rect width='300' height='100' fill='#2b2e33'/><path d='M20 8H280' stroke='#777' stroke-width='3'/><path d='M10 14Q22 40 10 62M285 14L292 60M270 20L276 48' stroke='#888' stroke-width='3' fill='none'/>${ks}</svg>`};
+V.cellA=function(){var ch=st.it.indexOf('紫外線手電筒')>=0?'紫外線手電筒':st.it.indexOf('一般手電筒')>=0?'一般手電筒':'';return `<div class='ph w'>維持心中的光芒<br>仰頭期盼神蹟降臨</div><div style='margin:8px 0'>`+(ch?`你拿走了「${ch}」。想換另一支的話，可以把它放回去：<div style='margin-top:6px'><button class='b' data-fl2='${ch==='紫外線手電筒'?'N':'UV'}'>🔄 換成${ch==='紫外線手電筒'?'一般手電筒':'紫外線手電筒'}</button></div>`:`牢房角落放著兩支手電筒，只能拿走其中一支：<div style='margin-top:6px;display:flex;gap:8px;justify-content:center'><button class='b' data-fl2='UV'>🔦 紫外線手電筒</button><button class='b' data-fl2='N'>🔦 一般手電筒</button></div>`)+`</div>`};
+function cellV(a,m,b,title){var L=st.it.indexOf('紫外線手電筒')>=0,g=L?`<span class='pu'>${m}</span>`:`<span class='gap'>${'　'.repeat(m.length)}</span>`;st.nt=st.nt.filter(function(x){return x[0]!==title});note(title,a+(L?m:'（看不清楚）')+b);return `<div class='ph'>${a}${g}${b}</div><div style='font-size:.8rem;margin-top:6px'>${L?'紫外線照出了隱藏的字。':'一般手電筒照不出隱藏的字，那裡一片空白。'}</div>`}
+V.cellB=function(){return cellV('也許沒有機會再見面了…願來生能再','愛你一生一世','，我的人生就到今天了','B牢房天花板')};
+V.cellC=function(){return cellV('我開始不相信上帝了…人世的瘋狂舉動，世界末日降臨，就讓','你我一起去死','!!!','C牢房天花板')};
+function pt(n,num,k){var h=['#5a3a1c','#c9a24a','#2a1a14'][k];return `<div style='text-align:center'><svg viewBox='0 0 70 84' style='width:100%;margin:0'><rect x='2' y='2' width='66' height='80' fill='#d8c8a0' stroke='#5a3a1c' stroke-width='3'/><path d='M10 80Q35 50 60 80Z' fill='${['#5a6a78','#8a5a6a','#3a5a3a'][k]}'/><ellipse cx='35' cy='38' rx='${k===1?11:14}' ry='${k===1?13:17}' fill='#f0c9a0'/>`+[`<path d='M20 34Q35 10 50 34Q35 24 20 34Z' fill='${h}'/>`,`<path d='M23 32Q35 18 47 32Q35 26 23 32Z' fill='${h}'/><circle cx='20' cy='34' r='5' fill='${h}'/><circle cx='50' cy='34' r='5' fill='${h}'/>`,`<path d='M18 40Q18 14 35 14Q52 14 52 40Q48 24 35 24Q22 24 18 40Z' fill='${h}'/><path d='M18 40Q16 56 22 64M52 40Q54 56 48 64' stroke='${h}' stroke-width='5' fill='none'/>`][k]+`<circle cx='30' cy='38' r='1.6' fill='#222'/><circle cx='40' cy='38' r='1.6' fill='#222'/><path d='M31 46Q35 49 39 46' stroke='#733' fill='none'/><circle cx='56' cy='14' r='10' fill='#a33'/><text x='56' y='19' text-anchor='middle' font-size='14' font-weight='700' fill='#fff'>${num}</text></svg><div style='font-size:.8rem'>${n}</div></div>`}
+function trio(a){return `箱內的紙條，三位人物與對應的編號：<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px'>${a.map(function(x,i){return pt(x[0],x[1],i)}).join('')}</div>`}
+V.boxB=function(l,o){return l?o.t:trio([['貞德',1],['克里斯汀',3],['瑪格麗特',2]])};
+V.boxC=function(l,o){return l?o.t:trio([['泰勒',5],['羅妮拉',6],['蒂芙尼',4]])};
+V.np=function(l,o){if(!l)return o.r;return `<div style='font-size:.85rem'>${o.t}<br>＊ 清除　＃ 確認</div><div class='kp'>${(o.keys||['1','2','3','4','5','6','7','8','9','*','0','#']).map(function(k){return `<button class='kb' data-k='${k}'>${k}</button>`}).join('')}</div>`};
+$('zd').addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-key],[data-fl2]');if(!t)return;if(t.dataset.key){var k=t.dataset.key;give('鑰匙'+k);note('鑰匙'+k,'從刑具牆取下了 '+k+' 牢房的鑰匙。');say('取下了鑰匙 '+k+'。');this.innerHTML=V.wall()}else{var u=t.dataset.fl2==='UV'?'紫外線手電筒':'一般手電筒';st.it=st.it.filter(function(x){return x.indexOf('手電筒')<0});st.nt=st.nt.filter(function(x){return x[0]!=='手電筒'});give(u);note('手電筒','在 A 牢房拿走了「'+u+'」。');say('你拿走了'+u+'。');this.innerHTML=V.cellA()}});
+(function(){var o3=S[2].o,nd=function(i,n,x){var o=o3[i];o.n=n;for(var k in x)o[k]=x[k]},dk='牢房一片漆黑。需要鑰匙，也需要光源。';delete o3[0].g;delete o3[1].g;
+nd(0,'刑具牆',{v:'wall',t:'牆上掛著各種刑具，還有三把鑰匙，標著 A、B、C。'});
+nd(1,'A牢房',{v:'cellA',need:'鑰匙A',nt:'牢房門鎖著，需要對應的鑰匙。',t:'A牢房的牆上寫著：維持心中的光芒，仰頭期盼神蹟降臨。角落放著兩支手電筒，只能拿走一支。'});
+nd(2,'B牢房',{v:'cellB',need:['鑰匙B','光源'],nt:dk,t:'B牢房一片漆黑，天花板上似乎有用發光塑料寫的字。'});
+nd(3,'B牢房的箱子',{v:'boxB',need:['鑰匙B','光源'],nt:dk,t:'B牢房裡有個6位數密碼箱。'});
+nd(4,'C牢房',{v:'cellC',need:['鑰匙C','光源'],nt:dk,t:'C牢房一片漆黑，天花板上似乎有用發光塑料寫的字。'});
+nd(5,'C牢房的箱子',{v:'boxC',need:['鑰匙C','光源'],nt:dk,t:'C牢房裡有個6位數密碼箱。'});
+nd(6,'D牢房',{v:'np',t:'D牢房的門上有 6 位數密碼鎖。'});
+nd(7,'出口',{v:'np',t:'出口是 6 位數密碼鎖。'});
+M['A牢房']=M['B牢房']=M['C牢房']=M['D牢房']='cage';M['B牢房的箱子']=M['C牢房的箱子']='chest'})();
+function jump(n){var b=n<st.s;st.s=n;spawn();draw();say(b?'你回到了「'+S[n].n+'」。':S[n].i)}
+S[1].o.push(O('🚪','返回','通往上一個場景的小門。',{back:1}));S[1].p.push([2,56,9,30]);
+S[2].o.push(O('🚪','返回','通往上一個場景的小門。',{back:1}));S[2].p.push([2,56,9,30]);
+S[3].o.push(O('🚪','返回','通往上一個場景的小門。',{back:1}));S[3].p.push([75,62,9,26]);
+M['返回']='door';
+function dH(){return st.dop?`<div class='pg bn' style='min-height:170px'><div style='font-size:.8rem'>艾提著森　給：戰友　約翰</div><br>「天使與魔鬼聯合，創造混世，獻上絕對的忠誠，成為天選之子」<svg viewBox='0 0 92 20' style='width:130px;position:absolute;left:10px;bottom:8px;margin:0'><defs><linearGradient id='bg1'><stop offset='0' stop-color='#3a1c08' stop-opacity='.6'/><stop offset='.6' stop-color='#3a1c08' stop-opacity='0'/></linearGradient></defs>${lcdG('381670')}<rect width='92' height='20' fill='url(#bg1)'/></svg></div>`:`<div data-ob='1' style='cursor:pointer;text-align:center'><svg viewBox='${SH.chest[0]}' style='width:60%'>${SH.chest[1]}</svg><div>牢房裡有一個箱子，點選打開</div></div>`}
+V.dcell=function(l,o){return l?V.np(l,o):dH()};
+$('zd').addEventListener('click',function(e){if(!(e.target.closest&&e.target.closest('[data-ob]')))return;st.dop=1;give('艾提著森的信');note('艾提著森的信','艾提著森 給：戰友 約翰：「天使與魔鬼聯合，創造混世，獻上絕對的忠誠，成為天選之子」。信的角落有一串微微燒焦、但能辨認的數字：381670。');this.innerHTML=dH()});
+(function(){var d3=S[2].o[6];d3.v='dcell';delete d3.g;d3.r='牢房裡有一個箱子。';S[2].o[7].h='把兩張殘紙（數字的上半部與下半部）拼起來；D牢房那封信的角落也有這串數字。'})();
+SH.gate=['0 0 40 100',`<rect x='3' y='3' width='34' height='94' fill='#000' fill-opacity='.3' stroke='#6a6f74' stroke-width='3'/><path d='M10 3V97M20 3V97M30 3V97' stroke='#8a9096' stroke-width='3'/><path d='M3 30H37M3 70H37' stroke='#6a6f74' stroke-width='3'/><rect x='13' y='46' width='14' height='12' fill='#b08a30'/>`];
+SH.ham=['0 0 120 60',`<rect x='6' y='24' width='80' height='12' rx='3' fill='#8a5a2b' stroke='#3a2412'/><rect x='78' y='6' width='34' height='38' rx='4' fill='#6a6f74' stroke='#2a2e30'/>`];
+SH.stake=['0 0 70 100',`<rect x='31' y='4' width='8' height='84' fill='#6b4423'/><circle cx='35' cy='24' r='7' fill='#f0c9a0'/><path d='M27 22Q35 10 43 22Q40 16 35 16Q30 16 27 22Z' fill='#3a2a1a'/><path d='M26 32Q35 28 44 32L48 66H22Z' fill='#7a6a8a'/><path d='M26 34L20 52M44 34L50 52' stroke='#f0c9a0' stroke-width='4'/><path d='M24 40H46M25 56H45' stroke='#c9a24a' stroke-width='3'/><path d='M8 96H62L52 78H18Z' fill='#5a3a1c'/><path d='M12 94Q18 74 26 90Q32 68 40 88Q48 72 56 94Z' fill='#e8742a'/><path d='M22 94Q28 80 34 92Q40 78 46 94Z' fill='#f6c85a'/>`];
+V.ham=function(l,o){var w=o.hm[0],r=o.hm[1];return `<svg viewBox='0 0 120 60'><rect x='6' y='24' width='80' height='12' rx='3' fill='#8a5a2b' stroke='#3a2412'/><text x='30' y='34' font-size='11' font-weight='700' fill='#fff'>${w}</text><rect x='78' y='6' width='34' height='38' rx='4' fill='#6a6f74' stroke='#2a2e30'/><text x='95' y='34' font-size='22' font-weight='700' fill='#e03030' text-anchor='middle'>${r}</text></svg>${o.t}`};
+V.stake=function(){return `火刑柱後方刻著：願<b style='color:#e03030'>神</b>、<b style='color:#e03030'>聖</b>十字拯救徨徨的靈魂！！`};
+function rc(c,b){return `<span class='rg' style='background-image:linear-gradient(${b})'>${c}</span>`}
+V.box4=function(l,o){if(l)return o.t;var K='#3a2a14',R='#e03030';return `<div class='pg bn' style='min-height:150px'>願上帝憐憨${rc('眾',R+' 48%,'+K+' 48%')}生，淨化${rc('邪','90deg,'+K+' 50%,'+R+' 50%')}惡的靈${rc('魂',K+' 18%,'+R+' 18%,'+R+' 48%,'+K+' 48%')}吧！！<br>${rc('這',K+' 22%,'+R+' 22%,'+R+' 40%,'+K+' 40%')}雙充滿髒髣血液的${rc('手',R+' 58%,'+K+' 58%')}，透過鮮紅的火焰，終將獲得${rc('究',K+' 52%,'+R+' 52%')}贖啊！！<br><br>署名：艾利克</div>`};
+(function(){var s=S[3],ho=[[2,5],[3,2],[1,4],[4,1],[5,9],[6,3]],hl='ABCDEF',hp=[[32,58,7,11],[38,70,7,11],[4,85,7,9],[22,86,7,9],[34,84,7,10],[40,46,7,10]];
+var os=[O('🐂','牛車','牛車上刻著一句話：「用制裁的鐵錘對巫女降下神罰吧」。四周散落著六把鐵錘。'),
+O('📦','牛車上的箱子','牛車上有個6位數密碼箱。',{v:'box4',c:'452193',h:'把六把鐵錘依木柄上白色數字 1 到 6 的順序排好，依序讀出鐵錘頭上的紅色數字。',r:'箱裡是日記本，其中一頁寫著：\n「願上帝憐憨眾【上半部】生，淨化邪【右方】惡的靈魂【鬼的中間田字紅半邊】吧！！這【言的中間兩痕】雙充滿髒髣血液的手【三橫畫】，透過鮮紅的火焰，終將獲得究【下方九】贖啊！！署名：艾利克」\n（【】內是紅色的部分）',g:'日記頁'}),
+O('🚪','鐵柵門','鐵柵門把刑場隔成兩半，門上有 6 位數密碼鎖。',{v:'np',c:'438239',h:'把日記裡紅色的部分轉成數字，依序排列。',r:'鐵柵門緩緩打開了。門的另一端是救火用的水箱和火刑柱，蒂芙尼正被綁在上面，底下的柴堆正逐漸燃燒著！'}),
+O('🔥','火刑柱','火刑柱後方刻著：願神、聖十字拯救徨徨的靈魂！！',{q:2,v:'stake'}),
+O('🚰','救火水箱','水箱的門上是一組按鍵鎖，輸入 7 個字母。',{q:2,d:1,v:'np',keys:['S','H','T','G','O','D','A','L','N','*','Y','#'],c:'GODHOLY',h:'柱後寫著「神」與「聖」，用英文拼出來。',r:'水流傾瀉而下，火焰熄滅了！你解救了蒂芙尼。\n\n🎉 你逃出來了！'})];
+ho.forEach(function(h,i){os.push(O('🔨','鐵錘 '+hl[i],'木柄上刻著白色的'+h[0]+'，鐵錘頭上刻著紅色的'+h[1]+'。',{v:'ham',hm:h,nb:1}));M['鐵錘 '+hl[i]]='ham'});
+os.push(O('🚪','返回','通往上一個場景的小門。',{back:1}));
+s.o=os;s.p=[[6,46,24,36],[14,34,10,13],[46,6,8,86],[64,8,16,64],[84,30,14,34]].concat(hp).concat([[1,8,9,46]]);s.gt=[46,54,2];
+s.x=[['🌅',6,3],['☁️',30,8],['🔥',66,70],['🔥',72,74],['🪵',69,76]];
+s.i='刑場的廣場上，一道鐵柵門把場地隔成兩半。你在牛車這一側，門的另一端是救火水箱和火刑柱，蒂芙尼正被綁在柱上，柴堆正逐漸燃燒著。';
+M['鐵柵門']='gate';
+S[2].o[7].r='原來是他們!終於掌握了幕後黑手的確切證據，遠方傳來眾人的咒罵聲與蒂芙尼的哭喊聲，來到最後的時刻了，趕往刑場，救下無辜的人吧!!'})();
+function spawn(){var sp=S[st.s].sp||[50,62];P.x=sp[0];P.y=sp[1];P.t=null}
+S[3].sp=[18,62];
+var WIN=`你成功滅了火，將蒂芙尼救了下來!!
+這個瘋狂的獵殺運動該降下帷幕了!!
+一番摺騰後，你們終於在最後一刻解救了蒂芙尼，雖然引起了群眾的喧譁，但憑著蛛絲馬跡，終證明了奂案的存在，大眾也終於認清事實，不再受到獵巫狂熱的影響。
+無可奈何的是，惡人惡報，終將是個死循環，罪魁禍首最終被眾人推上了火刑柱，以彼之道還之彼身，最終在多數獵巫人的火刑柱下，結束了這漫長的女性獵殺運動。
+說到底，人性的黑暗面，此刻顯露無遺。真正的太平盛世終將有降臨的那天嗎?
+無論如何，獵殺運動正在消退，你們仍奔走於各處，解救無辜的女性們...`,
+LOSE=`你來不及救火...眼睁睁的看著火勢越來越大...已無法可想....
+無辜慘死的蒂芙尼...那悔恨的淚水...終將拓印在你的心理，成為心魔...
+在蒂芙尼嚎啊的哭聲中，你們眼睁睁的看著她的眼淚滑下臉龐，那滴淚還未落到土地前，便已蒸發在高溫的火焰中，龐大的火焰最終吞噬了無辜的蒂芙尼，燃起了近乎瘋狂的舉動。
+明知道罪魁禍首逍遙法外，你卻無可奈何...世界陷入瘋狂的女巫獵殺運動...
+人倫、親情、信任、朋友、知識都將不復存在，世界似乎真正迎接了末日的來臨。
+而你依稀還能聽到...在那風中，不斷傳出的...那罪魁禍首們宛如失心瘋的癭狂笑聲...以及無辜受難者的痛苦哀號...`;
+function endGame(){st.over=1;$('lk').classList.remove('on');$('nt').textContent=LOSE;$('nb').textContent='再玩一次';$('nx').classList.add('on')}
+setInterval(function(){if(!st||st.over)return;var r=Math.max(0,3600-Math.floor((Date.now()-st.t0)/1000)),m=Math.floor(r/60),s=r%60;$('tm').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;$('tm').style.color=r<300?'#e03030':'';if(!r)endGame()},500);
+function rg(c,w,h,x,y){return `<span class='rg' style='background-image:linear-gradient(#e03030,#e03030),linear-gradient(#3a2a14,#3a2a14);background-size:${w}% ${h}%,100% 100%;background-position:${x}% ${y}%,0 0;background-repeat:no-repeat'>${c}</span>`}
+var SHOU=`<svg viewBox='0 0 20 20' style='width:1.1em;height:1.1em;vertical-align:-.15em;margin:0;display:inline'><path d='M5 4L14 3M4 9H16M3 14H17' stroke='#e03030' stroke-width='1.8' stroke-linecap='round'/><path d='M10 2V17Q10 19 7 18.5' stroke='#3a2a14' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>`;
+V.box4=function(l,o){if(l)return o.t;return `<div class='pg bn' style='min-height:150px'>願上帝憐憨${rg('眾',100,48,0,0)}生，淨化${rg('邪',45,100,100,0)}惡的靈${rg('魂',52,38,100,26)}吧！！<br>${rg('這',58,15,100,32)}雙充滿髒髣血液的${SHOU}，透過鮮紅的火焰，終將獲得${rg('究',100,48,0,100)}贖啊！！<br><br>署名：艾利克</div>`};
+function zoom(o,locked){$("zv").innerHTML=art(o);$("lt").textContent=o.n+(locked?"（"+o.c.length+" 碼）":"");if(o.v)$("zd").innerHTML=V[o.v](locked,o);else if(o.m)$("zd").innerHTML=calH();else if(o.og)$("zd").innerHTML=o.t+"<br>"+orgH(o.og);else $("zd").textContent=locked||!o.c?o.t:o.r;$("ze").textContent="";$("zi").style.display=locked?"block":"none";$("in").value="";$("in").readOnly=o.v==="pad"||o.v==="np";$("lk").classList.add("on");if(locked&&o.v!=="pad"&&o.v!=="np")setTimeout(function(){$("in").focus()},50)}
+var P={x:50,y:82,t:null,i:null,f:1},K={},pl,near=-2,last=0;
+function RC(i){var p=S[st.s].p[i];return[p[0],p[1],p[2],Math.max(p[3],60-p[1])]}
+function place(){if(pl){pl.style.left=P.x+'%';pl.style.top=P.y+'%';pl.firstChild.style.transform='scaleX('+P.f+')'}}
+function nearest(){var g=$('grid'),W=g.clientWidth,H=g.clientHeight,b=-1,bd=44,ps=S[st.s].p;for(var i=0;i<ps.length;i++){var r=RC(i),dx=Math.max(r[0]-P.x,0,P.x-r[0]-r[2])*W/100,dy=Math.max(r[1]-P.y,0,P.y-r[1]-r[3])*H/100,d=Math.hypot(dx,dy);if(d<bd){bd=d;b=i}}return b}
+function walk(i){if(near===i)return pick(i);var r=RC(i);P.t=[r[0]+r[2]/2,Math.min(94,Math.max(56,r[1]+r[3]+3))];P.i=i}
+function hit(x,y){var g=$('grid'),W=g.clientWidth,H=g.clientHeight,ps=S[st.s].p,px=x*W/100,py=y*H/100,gt=S[st.s].gt;if(gt&&!st.k[st.s+'-'+gt[2]]&&px>gt[0]*W/100-8&&px<gt[1]*W/100+8)return 1;for(var i=0;i<ps.length;i++){var p=ps[i],b=p[1]+p[3];if(b<=60||S[st.s].o[i].nb)continue;var t=Math.max(p[1],b-14);if(px>p[0]*W/100-8&&px<(p[0]+p[2])*W/100+8&&py>t*H/100-3&&py<b*H/100+2)return 1}return 0}
+function use(){if(near>=0)pick(near)}
+function tick(ts){var dt=Math.min(.05,(ts-last)/1000||0);last=ts;
+ if(!document.querySelector('.modal.on')){var g=$('grid'),W=g.clientWidth,H=g.clientHeight,dx=(K.ArrowRight||K.d?1:0)-(K.ArrowLeft||K.a?1:0),dy=(K.ArrowDown||K.s?1:0)-(K.ArrowUp||K.w?1:0);
+  if(dx||dy){P.t=null;P.i=null}else if(P.t){var ex=(P.t[0]-P.x)*W/100,ey=(P.t[1]-P.y)*H/100,d=Math.hypot(ex,ey);if(d<4){var ti=P.i;P.t=null;P.i=null;if(ti!=null)pick(ti)}else{dx=ex/d;dy=ey/d}}
+  if(dx||dy){var n=Math.hypot(dx,dy)||1,v=190*dt,nx=Math.min(97,Math.max(3,P.x+dx/n*v*100/W)),ny=Math.min(95,Math.max(54,P.y+dy/n*v*100/H)),mv=0;if(nx!==P.x&&!hit(nx,P.y)){P.x=nx;mv=1}if(ny!==P.y&&!hit(P.x,ny)){P.y=ny;mv=1}if(dx)P.f=dx>0?1:-1;if(!mv&&P.t){P.t=null;P.i=null}P.w=mv;place()}else P.w=0}
+ if(pl)pl.classList.toggle('walk',!!P.w&&!document.querySelector('.modal.on'));var nb=nearest();if(nb!==near){near=nb;var bs=$('grid').querySelectorAll('.o');for(var j=0;j<bs.length;j++)bs[j].classList.toggle('near',j===nb);var ia=$('ia');ia.disabled=nb<0;ia.textContent=nb<0?'🚶 走近家具後可調查':'🔍 調查：'+S[st.s].o[nb].n}
+ requestAnimationFrame(tick)}
+$('ia').onclick=use;
+$('grid').onclick=function(e){if(e.target!==this)return;var r=this.getBoundingClientRect();P.t=[(e.clientX-r.left)/r.width*100,Math.min(95,Math.max(54,(e.clientY-r.top)/r.height*100))];P.i=null};
+document.addEventListener('keydown',function(e){if(document.querySelector('.modal.on'))return;var k=e.key.length>1?e.key:e.key.toLowerCase();if(k==='e'||k==='Enter'||k===' '){e.preventDefault();use();return}K[k]=1;if(k.indexOf('Arrow')===0)e.preventDefault()});
+document.addEventListener('keyup',function(e){K[e.key.length>1?e.key:e.key.toLowerCase()]=0});
+requestAnimationFrame(tick);
+$("go").onclick=function(){
+  var o=S[st.s].o[cur],k=st.s+"-"+cur;
+  if($("in").value.trim().toUpperCase()!==o.c){$("ze").textContent="❌ 密碼錯誤，再仔細想想線索……";return}
+  st.k[k]=1;give(o.g);note(o.n+"（內容）",o.r);draw();say(o.r);zoom(o,false);if(o.d)$("lk").classList.remove("on");
+  if(o.d){var last=st.s===S.length-1;if(last)st.over=1;$("nt").textContent=last?WIN+"\n\n共用了 "+st.n+" 步，剩餘時間 "+$("tm").textContent+"。":o.r;$("nb").textContent=last?"再玩一次":"繼續";$("nx").classList.add("on")}
+};
+$("in").onkeydown=function(e){if(e.key==="Enter")$("go").click()};
+$("cl").onclick=function(){$("lk").classList.remove("on")};
+$("nb").onclick=function(){$("nx").classList.remove("on");if(st.over||st.s===S.length-1)reset();else{st.s++;spawn();draw();say(S[st.s].i)}};
+$("hint").onclick=function(){
+  var os=S[st.s].o;
+  for(var i=0;i<os.length;i++){var o=os[i];if(o.c&&!st.k[st.s+"-"+i]&&!miss(o).length&&(o.q==null||st.k[st.s+"-"+o.q]))return say("提示（"+o.n+"）："+o.h)}
+  say("目前沒有可用的提示，換個地方調查看看。");
+};
+$("rs").onclick=reset;
+reset();
+})();
+</script>
+</body>
+</html>
